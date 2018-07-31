@@ -15,6 +15,14 @@ class Main extends Component {
     repositories: [],
   }
 
+  componentDidMount() {
+    const repositories = localStorage.getItem('repos') ? JSON.parse(localStorage.getItem('repos')) : []
+
+    this.setState({
+      repositories
+    })
+  }
+
   handleAddRepository = async (e) => {
     e.preventDefault()
 
@@ -29,6 +37,8 @@ class Main extends Component {
         repositoryInput: '',
         repositories: [...this.state.repositories, repository],
         repositoryError: false,
+      },() => {
+        localStorage.setItem('repos', JSON.stringify(this.state.repositories))
       })
     } catch (err) {
       this.setState({ repositoryError: true })
