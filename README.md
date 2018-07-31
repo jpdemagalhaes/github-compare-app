@@ -1,4 +1,4 @@
-# Github Issue Viewer
+# Github Repo Compare
 
 A simple app where you can add a repo and it will show the most common stats.
 
