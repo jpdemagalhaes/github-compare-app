@@ -37,14 +37,18 @@ class Main extends Component {
         repositoryInput: '',
         repositories: [...this.state.repositories, repository],
         repositoryError: false,
-      },() => {
-        localStorage.setItem('repos', JSON.stringify(this.state.repositories))
-      })
+      },() => localStorage.setItem('repos', JSON.stringify(this.state.repositories) ))
     } catch (err) {
       this.setState({ repositoryError: true })
     } finally {
       this.setState({ isLoading: false })
     }
+  }
+
+  handleRemoveRepo = (id) => {
+    this.setState({
+      repositories: this.state.repositories.filter(repositories => repositories.id !== id)
+    },() => localStorage.setItem('repos', JSON.stringify(this.state.repositories) ))
   }
 
   render() {
@@ -62,7 +66,7 @@ class Main extends Component {
           <button type="submit">{ this.state.isLoading ? <i className="fa fa-spinner fa-pulse"></i> : 'OK' }</button>
         </Form>
 
-        <CompareList repositories={this.state.repositories} />
+        <CompareList repositories={this.state.repositories} handleRemoveRepo={this.handleRemoveRepo} />
       </Container>
     )
   }

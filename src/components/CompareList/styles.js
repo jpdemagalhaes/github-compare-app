@@ -15,6 +15,13 @@ export const Repository = styled.div`
   flex-direction: column;
   margin: 10px;
 
+  i {
+    color: #666;
+    align-self: flex-end;
+    padding: 5px 7px;
+    margin-bottom: -20px;
+  }
+
   header {
     padding: 30px;
     display: flex;
